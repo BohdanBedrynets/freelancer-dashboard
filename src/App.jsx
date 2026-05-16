@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react"
+
 import Sidebar from "./layout/Sidebar"
 import Topbar from "./layout/Topbar"
 
@@ -8,17 +10,31 @@ import TasksSection from "./sections/TasksSection"
 import ClientsSection from "./sections/ClientsSection"
 
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark"
+  })
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme)
+  }, [theme])
+
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white flex">
-      
+    <div
+      className={
+        theme === "dark"
+          ? "min-h-screen bg-[#0f172a] text-white flex transition-colors duration-300"
+          : "min-h-screen bg-slate-100 text-slate-950 flex transition-colors duration-300"
+      }
+    >
       <Sidebar />
 
       <div className="flex-1 flex flex-col">
-
-        <Topbar />
+        <Topbar
+          theme={theme}
+          setTheme={setTheme}
+        />
 
         <main className="p-4 sm:p-6 xl:p-8 space-y-6 xl:space-y-8">
-
           <StatsSection />
 
           <ChartSection />
@@ -32,7 +48,6 @@ export default function App() {
           </div>
 
           <ClientsSection />
-
         </main>
       </div>
     </div>
