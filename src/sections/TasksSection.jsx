@@ -7,32 +7,38 @@ const defaultTasks = [
   { id: 4, title: "Update portfolio case study", completed: false },
 ]
 
-export default function TasksSection() {
+export default function TasksSection({ isDark }) {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("freelancerTasks")
-
-    return savedTasks
-      ? JSON.parse(savedTasks)
-      : defaultTasks
+    return savedTasks ? JSON.parse(savedTasks) : defaultTasks
   })
 
   const [filter, setFilter] = useState("All")
 
+  const sectionClass = isDark
+    ? "bg-slate-900 border-slate-800 text-white"
+    : "bg-white border-slate-200 text-slate-900"
+
+  const mutedText = isDark ? "text-slate-400" : "text-slate-500"
+  const softMutedText = isDark ? "text-slate-500" : "text-slate-400"
+
+  const inactiveFilterClass = isDark
+    ? "bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700"
+    : "bg-slate-100 text-slate-500 hover:text-slate-900 hover:bg-slate-200"
+
+  const taskCardBase = isDark
+    ? "border-slate-800"
+    : "border-slate-200"
+
   useEffect(() => {
-    localStorage.setItem(
-      "freelancerTasks",
-      JSON.stringify(tasks)
-    )
+    localStorage.setItem("freelancerTasks", JSON.stringify(tasks))
   }, [tasks])
 
   function toggleTask(id) {
     setTasks((currentTasks) =>
       currentTasks.map((task) =>
         task.id === id
-          ? {
-              ...task,
-              completed: !task.completed,
-            }
+          ? { ...task, completed: !task.completed }
           : task
       )
     )
@@ -50,29 +56,29 @@ export default function TasksSection() {
     return tasks
   }, [tasks, filter])
 
-  const completedCount = tasks.filter(
-    (task) => task.completed
-  ).length
+  const completedCount = tasks.filter((task) => task.completed).length
 
   return (
-    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <section
+      className={`rounded-2xl border p-6 transition-colors duration-300 ${sectionClass}`}
+    >
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold">
             Tasks
           </h2>
 
-          <p className="text-sm text-slate-400 mt-1">
+          <p className={`text-sm mt-1 ${mutedText}`}>
             Daily freelance workflow
           </p>
         </div>
 
         <div className="text-right">
-          <p className="text-emerald-400 text-lg font-semibold">
+          <p className="text-emerald-500 text-lg font-semibold">
             {completedCount}/{tasks.length}
           </p>
 
-          <p className="text-xs text-slate-500">
+          <p className={`text-xs ${softMutedText}`}>
             completed
           </p>
         </div>
@@ -86,7 +92,7 @@ export default function TasksSection() {
             className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition ${
               filter === item
                 ? "bg-blue-500 text-white"
-                : "bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700"
+                : inactiveFilterClass
             }`}
           >
             {item}
@@ -95,45 +101,59 @@ export default function TasksSection() {
       </div>
 
       <div className="space-y-3">
-        {filteredTasks.map((task) => (
-          <button
-            key={task.id}
-            onClick={() => toggleTask(task.id)}
-            className={`w-full flex items-start gap-3 text-left border rounded-xl p-4 transition ${
-              task.completed
-                ? "bg-slate-900 border-slate-800 opacity-70"
-                : "bg-slate-950/50 border-slate-800 hover:bg-slate-800/60"
-            }`}
-          >
-            <span
-              className={`mt-1 w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition ${
-                task.completed
-                  ? "bg-emerald-500 border-emerald-500"
-                  : "border-slate-600"
-              }`}
-            >
-              {task.completed && (
-                <span className="text-[10px] text-white">
-                  ✓
-                </span>
-              )}
-            </span>
+        {filteredTasks.map((task) => {
+          const taskCardClass = task.completed
+            ? isDark
+              ? "bg-slate-900 border-slate-800 opacity-70"
+              : "bg-slate-50 border-slate-200 opacity-80"
+            : isDark
+              ? "bg-slate-950/50 border-slate-800 hover:bg-slate-800/60"
+              : "bg-white border-slate-200 hover:bg-slate-50"
 
-            <span
-              className={`text-sm transition ${
-                task.completed
-                  ? "text-slate-500 line-through"
-                  : "text-slate-200"
-              }`}
+          const taskTextClass = task.completed
+            ? isDark
+              ? "text-slate-500 line-through"
+              : "text-slate-400 line-through"
+            : isDark
+              ? "text-slate-200"
+              : "text-slate-800"
+
+          return (
+            <button
+              key={task.id}
+              onClick={() => toggleTask(task.id)}
+              className={`w-full flex items-start gap-3 text-left border rounded-xl p-4 transition ${taskCardBase} ${taskCardClass}`}
             >
-              {task.title}
-            </span>
-          </button>
-        ))}
+              <span
+                className={`mt-1 w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition ${
+                  task.completed
+                    ? "bg-emerald-500 border-emerald-500"
+                    : isDark
+                      ? "border-slate-600"
+                      : "border-slate-300"
+                }`}
+              >
+                {task.completed && (
+                  <span className="text-[10px] text-white">
+                    ✓
+                  </span>
+                )}
+              </span>
+
+              <span className={`text-sm transition ${taskTextClass}`}>
+                {task.title}
+              </span>
+            </button>
+          )
+        })}
 
         {filteredTasks.length === 0 && (
-          <div className="border border-dashed border-slate-700 rounded-xl p-6 text-center">
-            <p className="text-sm text-slate-500">
+          <div
+            className={`border border-dashed rounded-xl p-6 text-center ${
+              isDark ? "border-slate-700" : "border-slate-300"
+            }`}
+          >
+            <p className={`text-sm ${mutedText}`}>
               No tasks found
             </p>
           </div>

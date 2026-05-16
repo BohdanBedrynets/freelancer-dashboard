@@ -8,35 +8,18 @@ import {
 } from "lucide-react"
 
 const navItems = [
-  {
-    icon: LayoutDashboard,
-    label: "Dashboard",
-  },
-  {
-    icon: FolderKanban,
-    label: "Projects",
-  },
-  {
-    icon: Users,
-    label: "Clients",
-  },
-  {
-    icon: Briefcase,
-    label: "Earnings",
-  },
-  {
-    icon: ClipboardList,
-    label: "Tasks",
-  },
-  {
-    icon: Settings,
-    label: "Settings",
-  },
+  { icon: LayoutDashboard, label: "Dashboard" },
+  { icon: FolderKanban, label: "Projects" },
+  { icon: Users, label: "Clients" },
+  { icon: Briefcase, label: "Earnings" },
+  { icon: ClipboardList, label: "Tasks" },
+  { icon: Settings, label: "Settings" },
 ]
 
 export default function Sidebar({
   isSidebarOpen,
   setIsSidebarOpen,
+  isDark,
 }) {
   return (
     <>
@@ -51,9 +34,9 @@ export default function Sidebar({
         className={`
           fixed lg:static top-0 left-0 z-50
           h-screen w-72
-          border-r border-slate-800
-          bg-slate-950
+          border-r
           transition-transform duration-300
+          ${isDark ? "bg-slate-950 border-slate-800" : "bg-white border-slate-200"}
           ${
             isSidebarOpen
               ? "translate-x-0"
@@ -61,12 +44,20 @@ export default function Sidebar({
           }
         `}
       >
-        <div className="p-6 border-b border-slate-800">
-          <h1 className="text-3xl font-bold text-white">
+        <div
+          className={`p-6 border-b ${
+            isDark ? "border-slate-800" : "border-slate-200"
+          }`}
+        >
+          <h1
+            className={`text-3xl font-bold ${
+              isDark ? "text-white" : "text-slate-950"
+            }`}
+          >
             FreelancePro
           </h1>
 
-          <p className="text-slate-400 mt-2">
+          <p className={`mt-2 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
             Freelancer Dashboard
           </p>
         </div>
@@ -78,26 +69,45 @@ export default function Sidebar({
             return (
               <button
                 key={item.label}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-900 hover:text-white transition"
+                className={`
+                  w-full flex items-center gap-3 px-4 py-3 rounded-xl transition
+                  ${
+                    isDark
+                      ? "text-slate-300 hover:bg-slate-900 hover:text-white"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                  }
+                `}
               >
                 <Icon size={20} />
-
                 <span>{item.label}</span>
               </button>
             )
           })}
         </nav>
 
-        <div className="absolute bottom-6 left-6 right-6 bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <p className="text-slate-400 text-sm">
+        <div
+          className={`
+            absolute bottom-6 left-6 right-6 rounded-2xl p-5 border
+            ${
+              isDark
+                ? "bg-slate-900 border-slate-800"
+                : "bg-slate-50 border-slate-200"
+            }
+          `}
+        >
+          <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}>
             Monthly earnings
           </p>
 
-          <h2 className="text-5xl font-bold mt-3 text-white">
+          <h2
+            className={`text-5xl font-bold mt-3 ${
+              isDark ? "text-white" : "text-slate-950"
+            }`}
+          >
             $4,250
           </h2>
 
-          <p className="text-emerald-400 mt-2">
+          <p className="text-emerald-500 mt-2">
             +12% this month
           </p>
         </div>

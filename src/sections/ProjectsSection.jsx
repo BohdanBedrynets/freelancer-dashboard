@@ -2,31 +2,41 @@ import { projects } from "../data/mockData"
 
 function getStatusStyle(status) {
   if (status === "Completed") {
-    return "bg-emerald-400/10 text-emerald-400"
+    return "bg-emerald-400/10 text-emerald-500"
   }
 
   if (status === "Review") {
-    return "bg-amber-400/10 text-amber-400"
+    return "bg-amber-400/10 text-amber-500"
   }
 
-  return "bg-blue-400/10 text-blue-400"
+  return "bg-blue-400/10 text-blue-500"
 }
 
-export default function ProjectsSection({ cardClass }) {
+export default function ProjectsSection({ isDark }) {
+  const sectionClass = isDark
+    ? "bg-slate-900 border-slate-800 text-white"
+    : "bg-white border-slate-200 text-slate-900"
+
+  const mutedText = isDark ? "text-slate-400" : "text-slate-500"
+  const rowBorder = isDark ? "border-slate-800" : "border-slate-200"
+  const headText = isDark ? "text-slate-400" : "text-slate-500"
+
   return (
-    <section className={cardClass}>
+    <section
+      className={`rounded-2xl border p-6 transition-colors duration-300 ${sectionClass}`}
+    >
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-semibold">
             Recent projects
           </h2>
 
-          <p className="text-sm text-slate-400 mt-1">
+          <p className={`text-sm mt-1 ${mutedText}`}>
             Current freelance work and deadlines
           </p>
         </div>
 
-        <button className="text-sm text-blue-400 hover:text-blue-300">
+        <button className="text-sm text-blue-500 hover:text-blue-400">
           View all
         </button>
       </div>
@@ -34,7 +44,7 @@ export default function ProjectsSection({ cardClass }) {
       <div className="overflow-x-auto">
         <table className="w-full text-left">
           <thead>
-            <tr className="text-sm text-slate-400 border-b border-slate-800">
+            <tr className={`text-sm border-b ${headText} ${rowBorder}`}>
               <th className="pb-4 font-medium">Project</th>
               <th className="pb-4 font-medium">Client</th>
               <th className="pb-4 font-medium">Status</th>
@@ -47,13 +57,13 @@ export default function ProjectsSection({ cardClass }) {
             {projects.map((project) => (
               <tr
                 key={project.name}
-                className="border-b border-slate-800 last:border-0"
+                className={`border-b last:border-0 ${rowBorder}`}
               >
                 <td className="py-4 font-medium">
                   {project.name}
                 </td>
 
-                <td className="py-4 text-slate-400">
+                <td className={`py-4 ${mutedText}`}>
                   {project.client}
                 </td>
 
@@ -67,7 +77,7 @@ export default function ProjectsSection({ cardClass }) {
                   </span>
                 </td>
 
-                <td className="py-4 text-slate-400">
+                <td className={`py-4 ${mutedText}`}>
                   {project.deadline}
                 </td>
 
