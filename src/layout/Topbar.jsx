@@ -3,17 +3,21 @@ import {
   Menu,
   Moon,
   Search,
-  Sun
+  Sun,
 } from "lucide-react"
 
 export default function Topbar({
   theme,
   setTheme,
+  setIsSidebarOpen,
 }) {
   return (
     <header className="h-20 border-b border-slate-800 bg-slate-950 px-4 sm:px-6 flex items-center justify-between">
       <div className="flex items-center gap-3 w-full max-w-md">
-        <button className="lg:hidden w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center">
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="lg:hidden w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center"
+        >
           <Menu size={20} />
         </button>
 
@@ -59,7 +63,7 @@ export default function Topbar({
           </div>
 
           <div>
-            <p className="font-medium">
+            <p className="font-medium text-white">
               Bohdan
             </p>
 
