@@ -1,16 +1,6 @@
-import {
-  Bell,
-  Menu,
-  Moon,
-  Search,
-  Sun,
-} from "lucide-react"
+import { Bell, Menu, Search } from "lucide-react"
 
-export default function Topbar({
-  theme,
-  setTheme,
-  setIsSidebarOpen,
-}) {
+export default function Topbar({ setIsSidebarOpen }) {
   return (
     <header className="h-20 border-b border-slate-800 bg-slate-950 px-4 sm:px-6 flex items-center justify-between">
       <div className="flex items-center gap-3 w-full max-w-md">
@@ -36,23 +26,6 @@ export default function Topbar({
       </div>
 
       <div className="flex items-center gap-3 ml-4">
-        <button
-          onClick={() =>
-            setTheme(
-              theme === "dark"
-                ? "light"
-                : "dark"
-            )
-          }
-          className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-slate-800 transition"
-        >
-          {theme === "dark" ? (
-            <Sun size={18} />
-          ) : (
-            <Moon size={18} />
-          )}
-        </button>
-
         <button className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-slate-800 transition">
           <Bell size={18} />
         </button>
@@ -63,13 +36,8 @@ export default function Topbar({
           </div>
 
           <div>
-            <p className="font-medium text-white">
-              Bohdan
-            </p>
-
-            <p className="text-xs text-slate-400">
-              Frontend Developer
-            </p>
+            <p className="font-medium">Bohdan</p>
+            <p className="text-xs text-slate-400">Frontend Developer</p>
           </div>
         </div>
       </div>
