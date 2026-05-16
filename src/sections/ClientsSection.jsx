@@ -1,33 +1,4 @@
-const clients = [
-  {
-    name: "Sarah Miller",
-    country: "United States",
-    project: "Landing Page Redesign",
-    status: "Active",
-    initials: "SM",
-  },
-  {
-    name: "Daniel Brooks",
-    country: "United Kingdom",
-    project: "SaaS Dashboard UI",
-    status: "Review",
-    initials: "DB",
-  },
-  {
-    name: "Emma Wilson",
-    country: "Canada",
-    project: "Portfolio Website",
-    status: "Completed",
-    initials: "EW",
-  },
-  {
-    name: "Michael Chen",
-    country: "Singapore",
-    project: "Figma to React",
-    status: "Active",
-    initials: "MC",
-  },
-]
+import { clients } from "../data/mockData"
 
 function getStatusStyle(status) {
   if (status === "Completed") {

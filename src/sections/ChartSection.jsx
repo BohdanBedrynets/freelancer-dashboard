@@ -1,3 +1,5 @@
+import { earningsData } from "../data/mockData"
+
 import {
   LineChart,
   Line,
@@ -7,15 +9,6 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts"
-
-const earningsData = [
-  { month: "Jan", earnings: 1800 },
-  { month: "Feb", earnings: 2400 },
-  { month: "Mar", earnings: 2200 },
-  { month: "Apr", earnings: 3100 },
-  { month: "May", earnings: 4250 },
-  { month: "Jun", earnings: 3900 },
-]
 
 export default function ChartSection() {
   return (

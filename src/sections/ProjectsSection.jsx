@@ -1,33 +1,4 @@
-const projects = [
-  {
-    name: "Landing Page Redesign",
-    client: "Sarah Miller",
-    status: "In Progress",
-    deadline: "May 24",
-    price: "$450",
-  },
-  {
-    name: "SaaS Dashboard UI",
-    client: "Daniel Brooks",
-    status: "Review",
-    deadline: "May 28",
-    price: "$820",
-  },
-  {
-    name: "Portfolio Website",
-    client: "Emma Wilson",
-    status: "Completed",
-    deadline: "Jun 02",
-    price: "$300",
-  },
-  {
-    name: "Figma to React",
-    client: "Michael Chen",
-    status: "In Progress",
-    deadline: "Jun 08",
-    price: "$650",
-  },
-]
+import { projects } from "../data/mockData"
 
 function getStatusStyle(status) {
   if (status === "Completed") {
