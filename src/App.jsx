@@ -17,7 +17,7 @@ export default function App() {
 
         <Topbar />
 
-        <main className="p-8 space-y-8">
+        <main className="p-4 sm:p-6 xl:p-8 space-y-6 xl:space-y-8">
 
           <StatsSection />
 
