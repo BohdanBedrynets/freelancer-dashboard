@@ -36,8 +36,8 @@ export default function ChartSection() {
         </span>
       </div>
 
-      <div className="h-64">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-[300px] min-w-0">
+        <ResponsiveContainer width="100%" height={300}>
           <LineChart data={earningsData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
 
