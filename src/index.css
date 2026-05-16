@@ -13,3 +13,37 @@
     @apply bg-white border-slate-200;
   }
 }
+
+@layer components {
+  .app-bg {
+    @apply bg-[#0f172a] text-white;
+  }
+
+  .app-bg-light {
+    @apply bg-slate-100 text-slate-950;
+  }
+
+  .surface {
+    @apply bg-slate-900 border border-slate-800;
+  }
+
+  .surface-light {
+    @apply bg-white border border-slate-200;
+  }
+
+  .surface-soft {
+    @apply bg-slate-950/50 border border-slate-800;
+  }
+
+  .surface-soft-light {
+    @apply bg-slate-50 border border-slate-200;
+  }
+
+  .text-muted {
+    @apply text-slate-400;
+  }
+
+  .text-muted-light {
+    @apply text-slate-500;
+  }
+}
