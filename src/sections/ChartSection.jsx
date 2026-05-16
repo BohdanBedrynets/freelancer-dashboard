@@ -10,9 +10,9 @@ import {
   CartesianGrid,
 } from "recharts"
 
-export default function ChartSection() {
+export default function ChartSection({ cardClass }) {
   return (
-    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <section className={cardClass}>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-semibold">

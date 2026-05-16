@@ -18,6 +18,11 @@ export default function App() {
     localStorage.setItem("theme", theme)
   }, [theme])
 
+  const cardClass =
+    theme === "dark"
+      ? "dashboard-card dashboard-card-dark"
+      : "dashboard-card dashboard-card-light"
+
   return (
     <div
       className={
@@ -29,25 +34,22 @@ export default function App() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col">
-        <Topbar
-          theme={theme}
-          setTheme={setTheme}
-        />
+        <Topbar theme={theme} setTheme={setTheme} />
 
         <main className="p-4 sm:p-6 xl:p-8 space-y-6 xl:space-y-8">
-          <StatsSection />
+          <StatsSection theme={theme} cardClass={cardClass} />
 
-          <ChartSection />
+          <ChartSection theme={theme} cardClass={cardClass} />
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
             <div className="xl:col-span-3">
-              <ProjectsSection />
+              <ProjectsSection theme={theme} cardClass={cardClass} />
             </div>
 
-            <TasksSection />
+            <TasksSection theme={theme} cardClass={cardClass} />
           </div>
 
-          <ClientsSection />
+          <ClientsSection theme={theme} cardClass={cardClass} />
         </main>
       </div>
     </div>

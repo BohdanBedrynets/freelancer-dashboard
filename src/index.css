@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@layer components {
+  .dashboard-card {
+    @apply rounded-2xl border p-6 transition-colors duration-300;
+  }
+
+  .dashboard-card-dark {
+    @apply bg-slate-900 border-slate-800;
+  }
+
+  .dashboard-card-light {
+    @apply bg-white border-slate-200;
+  }
+}

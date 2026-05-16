@@ -12,9 +12,9 @@ function getStatusStyle(status) {
   return "bg-blue-400/10 text-blue-400"
 }
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ cardClass }) {
   return (
-    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <section className={cardClass}>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-semibold">
