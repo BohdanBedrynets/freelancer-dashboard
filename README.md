@@ -53,6 +53,10 @@ The project focuses on clean UI, responsive layouts, reusable React components, 
 
 ---
 
+## Live Demo
+
+https://freelancer-dashboard-rosy.vercel.app
+
 ## Installation
 
 ```bash
