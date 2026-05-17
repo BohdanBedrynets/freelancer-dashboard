@@ -5,7 +5,6 @@ import {
   ClipboardList,
   FolderKanban,
   LayoutDashboard,
-  Settings,
   Users,
 } from "lucide-react"
 
@@ -34,11 +33,6 @@ const navItems = [
     icon: ClipboardList,
     label: "Tasks",
     sectionId: "tasks-section",
-  },
-  {
-    icon: Settings,
-    label: "Settings",
-    sectionId: "dashboard-section",
   },
 ]
 

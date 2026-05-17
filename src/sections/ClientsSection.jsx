@@ -25,6 +25,18 @@ export default function ClientsSection({ isDark }) {
     ? "bg-slate-950/50 border-slate-800 hover:bg-slate-800/40"
     : "bg-slate-50 border-slate-200 hover:bg-slate-100"
 
+  const mutedText = isDark
+    ? "text-slate-400"
+    : "text-slate-500"
+
+  const softMutedText = isDark
+    ? "text-slate-500"
+    : "text-slate-400"
+
+  const projectText = isDark
+    ? "text-slate-200"
+    : "text-slate-800"
+
   const modalClass = isDark
     ? "bg-slate-900 border-slate-800 text-white"
     : "bg-white border-slate-200 text-slate-900"
@@ -32,10 +44,6 @@ export default function ClientsSection({ isDark }) {
   const modalSoftClass = isDark
     ? "bg-slate-950/50 border-slate-800"
     : "bg-slate-50 border-slate-200"
-
-  const mutedText = isDark ? "text-slate-400" : "text-slate-500"
-  const softMutedText = isDark ? "text-slate-500" : "text-slate-400"
-  const projectText = isDark ? "text-slate-200" : "text-slate-800"
 
   return (
     <>
@@ -58,9 +66,12 @@ export default function ClientsSection({ isDark }) {
             onClick={() =>
               document
                 .getElementById("clients-section")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
             }
-            className="text-sm text-blue-500 hover:text-blue-400"
+            className="text-sm text-blue-500 hover:text-blue-400 cursor-pointer"
           >
             Manage clients
           </button>
@@ -114,18 +125,18 @@ export default function ClientsSection({ isDark }) {
       </section>
 
       {selectedClient && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-[100] flex items-stretch sm:items-center justify-center">
           <div
             onClick={() => setSelectedClient(null)}
             className="absolute inset-0 bg-black/50"
           />
 
           <div
-            className={`relative w-full max-w-xl rounded-2xl border p-6 shadow-2xl ${modalClass}`}
+            className={`relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-md overflow-y-auto border p-4 shadow-2xl sm:rounded-2xl ${modalClass}`}
           >
-            <div className="flex items-start justify-between gap-4 mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold text-lg">
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-14 h-14 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold text-2xl">
                   {selectedClient.initials}
                 </div>
 
@@ -152,20 +163,22 @@ export default function ClientsSection({ isDark }) {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
+            <div className="grid grid-cols-1 gap-3 mb-4">
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
                 <p className={`text-xs mb-1 ${mutedText}`}>
                   Country
                 </p>
+
                 <p className="font-semibold">
                   {selectedClient.country}
                 </p>
               </div>
 
-              <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
                 <p className={`text-xs mb-1 ${mutedText}`}>
                   Status
                 </p>
+
                 <span
                   className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusStyle(
                     selectedClient.status
@@ -175,24 +188,25 @@ export default function ClientsSection({ isDark }) {
                 </span>
               </div>
 
-              <div className={`rounded-xl border p-4 sm:col-span-2 ${modalSoftClass}`}>
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
                 <p className={`text-xs mb-1 ${mutedText}`}>
                   Current project
                 </p>
+
                 <p className="font-semibold">
                   {selectedClient.project}
                 </p>
               </div>
             </div>
 
-            <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
+            <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
               <p className={`text-xs mb-2 ${mutedText}`}>
                 Notes
               </p>
 
               <p className={`text-sm leading-6 ${mutedText}`}>
-                This client is connected to an active freelance workflow with
-                project tracking, delivery status and communication history.
+                This client is connected to an active freelance workflow
+                with project tracking and delivery status.
               </p>
             </div>
           </div>

@@ -21,9 +21,17 @@ export default function ProjectsSection({ isDark }) {
     ? "bg-slate-900 border-slate-800 text-white"
     : "bg-white border-slate-200 text-slate-900"
 
-  const mutedText = isDark ? "text-slate-400" : "text-slate-500"
-  const rowBorder = isDark ? "border-slate-800" : "border-slate-200"
-  const headText = isDark ? "text-slate-400" : "text-slate-500"
+  const mutedText = isDark
+    ? "text-slate-400"
+    : "text-slate-500"
+
+  const rowBorder = isDark
+    ? "border-slate-800"
+    : "border-slate-200"
+
+  const headText = isDark
+    ? "text-slate-400"
+    : "text-slate-500"
 
   const modalClass = isDark
     ? "bg-slate-900 border-slate-800 text-white"
@@ -54,9 +62,12 @@ export default function ProjectsSection({ isDark }) {
             onClick={() =>
               document
                 .getElementById("projects-section")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
             }
-            className="text-sm text-blue-500 hover:text-blue-400"
+            className="text-sm text-blue-500 hover:text-blue-400 cursor-pointer"
           >
             View all
           </button>
@@ -66,11 +77,25 @@ export default function ProjectsSection({ isDark }) {
           <table className="w-full text-left">
             <thead>
               <tr className={`text-sm border-b ${headText} ${rowBorder}`}>
-                <th className="pb-4 font-medium">Project</th>
-                <th className="pb-4 font-medium">Client</th>
-                <th className="pb-4 font-medium">Status</th>
-                <th className="pb-4 font-medium">Deadline</th>
-                <th className="pb-4 font-medium text-right">Price</th>
+                <th className="pb-4 font-medium">
+                  Project
+                </th>
+
+                <th className="pb-4 font-medium">
+                  Client
+                </th>
+
+                <th className="pb-4 font-medium">
+                  Status
+                </th>
+
+                <th className="pb-4 font-medium">
+                  Deadline
+                </th>
+
+                <th className="pb-4 font-medium text-right">
+                  Price
+                </th>
               </tr>
             </thead>
 
@@ -118,16 +143,16 @@ export default function ProjectsSection({ isDark }) {
       </section>
 
       {selectedProject && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-[100] flex items-stretch sm:items-center justify-center">
           <div
             onClick={() => setSelectedProject(null)}
             className="absolute inset-0 bg-black/50"
           />
 
           <div
-            className={`relative w-full max-w-xl rounded-2xl border p-6 shadow-2xl ${modalClass}`}
+            className={`relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-md overflow-y-auto border p-4 shadow-2xl sm:rounded-2xl ${modalClass}`}
           >
-            <div className="flex items-start justify-between gap-4 mb-6">
+            <div className="flex items-start justify-between gap-3 mb-4">
               <div>
                 <p className={`text-sm mb-1 ${mutedText}`}>
                   Project details
@@ -150,14 +175,22 @@ export default function ProjectsSection({ isDark }) {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>Client</p>
-                <p className="font-semibold">{selectedProject.client}</p>
+            <div className="grid grid-cols-1 gap-3 mb-4">
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
+                <p className={`text-xs mb-1 ${mutedText}`}>
+                  Client
+                </p>
+
+                <p className="font-semibold">
+                  {selectedProject.client}
+                </p>
               </div>
 
-              <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>Status</p>
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
+                <p className={`text-xs mb-1 ${mutedText}`}>
+                  Status
+                </p>
+
                 <span
                   className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusStyle(
                     selectedProject.status
@@ -167,24 +200,35 @@ export default function ProjectsSection({ isDark }) {
                 </span>
               </div>
 
-              <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>Deadline</p>
-                <p className="font-semibold">{selectedProject.deadline}</p>
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
+                <p className={`text-xs mb-1 ${mutedText}`}>
+                  Deadline
+                </p>
+
+                <p className="font-semibold">
+                  {selectedProject.deadline}
+                </p>
               </div>
 
-              <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>Budget</p>
-                <p className="font-semibold">{selectedProject.price}</p>
+              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
+                <p className={`text-xs mb-1 ${mutedText}`}>
+                  Budget
+                </p>
+
+                <p className="font-semibold">
+                  {selectedProject.price}
+                </p>
               </div>
             </div>
 
-            <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-              <p className={`text-xs mb-2 ${mutedText}`}>Notes</p>
+            <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
+              <p className={`text-xs mb-2 ${mutedText}`}>
+                Notes
+              </p>
 
               <p className={`text-sm leading-6 ${mutedText}`}>
                 This project includes responsive frontend implementation,
-                clean component structure, client communication and delivery
-                tracking.
+                client communication and delivery tracking.
               </p>
             </div>
           </div>
