@@ -110,7 +110,7 @@ export default function Topbar({
       <div className="flex items-center gap-3 w-full max-w-md">
         <button
           onClick={() => setIsSidebarOpen(true)}
-          className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition ${buttonClass}`}
+          className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition cursor-pointer ${buttonClass}`}
         >
           <Menu size={20} />
         </button>
@@ -152,7 +152,7 @@ export default function Topbar({
                       <button
                         key={`${result.type}-${result.title}`}
                         onClick={() => setSearchQuery("")}
-                        className={`w-full p-4 border-b last:border-b-0 text-left transition ${dropdownItemClass}`}
+                        className={`w-full p-4 border-b last:border-b-0 text-left transition cursor-pointer ${dropdownItemClass}`}
                       >
                         <div className="flex items-start gap-3">
                           <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
@@ -188,7 +188,7 @@ export default function Topbar({
       <div className="flex items-center gap-3 ml-4">
         <button
           onClick={toggleTheme}
-          className={`w-11 h-11 rounded-xl border flex items-center justify-center transition ${buttonClass}`}
+          className={`w-11 h-11 rounded-xl border flex items-center justify-center transition cursor-pointer ${buttonClass}`}
         >
           {isDark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
@@ -196,7 +196,7 @@ export default function Topbar({
         <div className="relative">
           <button
             onClick={() => setIsNotificationsOpen((current) => !current)}
-            className={`relative w-11 h-11 rounded-xl border flex items-center justify-center transition ${buttonClass}`}
+            className={`relative w-11 h-11 rounded-xl border flex items-center justify-center transition cursor-pointer ${buttonClass}`}
           >
             <Bell size={18} />
 
@@ -221,9 +221,9 @@ export default function Topbar({
 
               <div>
                 {notifications.map((notification) => (
-                  <div
+                  <button
                     key={notification.title}
-                    className={`p-4 border-b last:border-b-0 transition ${dropdownItemClass}`}
+                    className={`w-full p-4 border-b last:border-b-0 text-left transition cursor-pointer ${dropdownItemClass}`}
                   >
                     <div className="flex items-start gap-3">
                       <div className="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />
@@ -242,7 +242,7 @@ export default function Topbar({
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

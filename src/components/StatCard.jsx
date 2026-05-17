@@ -36,11 +36,9 @@ export default function StatCard({
           </p>
         </div>
 
-        <div
-          className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconBox}`}
-        >
-          <Icon size={22} />
-        </div>
+<div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center cursor-pointer hover:bg-blue-500/20 transition">
+  <Icon size={22} />
+</div>
       </div>
     </div>
   )

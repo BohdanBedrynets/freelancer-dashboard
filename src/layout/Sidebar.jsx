@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import {
   Briefcase,
   ClipboardList,
@@ -45,7 +47,11 @@ export default function Sidebar({
   setIsSidebarOpen,
   isDark,
 }) {
-  function scrollToSection(sectionId) {
+  const [activeSection, setActiveSection] = useState("Dashboard")
+
+  function scrollToSection(sectionId, label) {
+    setActiveSection(label)
+
     document
       .getElementById(sectionId)
       ?.scrollIntoView({
@@ -100,21 +106,25 @@ export default function Sidebar({
         <nav className="p-4 space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon
+            const isActive = activeSection === item.label
 
             return (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.sectionId)}
+                onClick={() => scrollToSection(item.sectionId, item.label)}
                 className={`
-                  w-full flex items-center gap-3 px-4 py-3 rounded-xl transition
+                  w-full flex items-center gap-3 px-4 py-3 rounded-xl transition cursor-pointer
                   ${
-                    isDark
-                      ? "text-slate-300 hover:bg-slate-900 hover:text-white"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                    isActive
+                      ? "bg-blue-500 text-white shadow-lg shadow-blue-500/20"
+                      : isDark
+                        ? "text-slate-300 hover:bg-slate-900 hover:text-white"
+                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
                   }
                 `}
               >
                 <Icon size={20} />
+
                 <span>{item.label}</span>
               </button>
             )
