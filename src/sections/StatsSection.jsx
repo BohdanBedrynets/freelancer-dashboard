@@ -36,7 +36,10 @@ const stats = [
 
 export default function StatsSection({ isDark }) {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <section
+      id="dashboard-section"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 scroll-mt-24"
+    >
       {stats.map((stat) => (
         <StatCard
           key={stat.title}

@@ -16,7 +16,7 @@ export default function ChartSection({ cardClass, isDark }) {
   const axisColor = isDark ? "#64748b" : "#475569"
 
   return (
-    <section className={cardClass}>
+    <section id="earnings-section" className={`${cardClass} scroll-mt-24`}>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-semibold">

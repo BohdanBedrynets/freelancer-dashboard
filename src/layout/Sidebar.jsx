@@ -8,12 +8,36 @@ import {
 } from "lucide-react"
 
 const navItems = [
-  { icon: LayoutDashboard, label: "Dashboard" },
-  { icon: FolderKanban, label: "Projects" },
-  { icon: Users, label: "Clients" },
-  { icon: Briefcase, label: "Earnings" },
-  { icon: ClipboardList, label: "Tasks" },
-  { icon: Settings, label: "Settings" },
+  {
+    icon: LayoutDashboard,
+    label: "Dashboard",
+    sectionId: "dashboard-section",
+  },
+  {
+    icon: FolderKanban,
+    label: "Projects",
+    sectionId: "projects-section",
+  },
+  {
+    icon: Users,
+    label: "Clients",
+    sectionId: "clients-section",
+  },
+  {
+    icon: Briefcase,
+    label: "Earnings",
+    sectionId: "earnings-section",
+  },
+  {
+    icon: ClipboardList,
+    label: "Tasks",
+    sectionId: "tasks-section",
+  },
+  {
+    icon: Settings,
+    label: "Settings",
+    sectionId: "dashboard-section",
+  },
 ]
 
 export default function Sidebar({
@@ -21,6 +45,17 @@ export default function Sidebar({
   setIsSidebarOpen,
   isDark,
 }) {
+  function scrollToSection(sectionId) {
+    document
+      .getElementById(sectionId)
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+
+    setIsSidebarOpen(false)
+  }
+
   return (
     <>
       {isSidebarOpen && (
@@ -69,6 +104,7 @@ export default function Sidebar({
             return (
               <button
                 key={item.label}
+                onClick={() => scrollToSection(item.sectionId)}
                 className={`
                   w-full flex items-center gap-3 px-4 py-3 rounded-xl transition
                   ${

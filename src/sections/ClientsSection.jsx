@@ -27,7 +27,8 @@ export default function ClientsSection({ isDark }) {
 
   return (
     <section
-      className={`rounded-2xl border p-6 transition-colors duration-300 ${sectionClass}`}
+      id="clients-section"
+      className={`rounded-2xl border p-6 transition-colors duration-300 scroll-mt-24 ${sectionClass}`}
     >
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -40,7 +41,14 @@ export default function ClientsSection({ isDark }) {
           </p>
         </div>
 
-        <button className="text-sm text-blue-500 hover:text-blue-400">
+        <button
+          onClick={() =>
+            document
+              .getElementById("clients-section")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" })
+          }
+          className="text-sm text-blue-500 hover:text-blue-400"
+        >
           Manage clients
         </button>
       </div>

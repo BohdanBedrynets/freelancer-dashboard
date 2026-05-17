@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 import {
   Bell,
+  Briefcase,
   Menu,
   Moon,
   Search,
   Sun,
+  User,
 } from "lucide-react"
+
+import { clients, projects } from "../data/mockData"
 
 const notifications = [
   {
@@ -33,6 +37,7 @@ export default function Topbar({
   setTheme,
 }) {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const inputClass = isDark
     ? "bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus:border-blue-500"
@@ -54,13 +59,45 @@ export default function Topbar({
     ? "bg-slate-900 border-slate-800 text-white"
     : "bg-white border-slate-200 text-slate-900"
 
-  const notificationItemClass = isDark
+  const dropdownItemClass = isDark
     ? "hover:bg-slate-800 border-slate-800"
     : "hover:bg-slate-50 border-slate-200"
 
-  const mutedText = isDark
-    ? "text-slate-400"
-    : "text-slate-500"
+  const mutedText = isDark ? "text-slate-400" : "text-slate-500"
+
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase()
+
+    if (!query) return []
+
+    const projectResults = projects
+      .filter((project) =>
+        `${project.name} ${project.client} ${project.status}`
+          .toLowerCase()
+          .includes(query)
+      )
+      .map((project) => ({
+        type: "Project",
+        title: project.name,
+        subtitle: `${project.client} • ${project.status}`,
+        icon: Briefcase,
+      }))
+
+    const clientResults = clients
+      .filter((client) =>
+        `${client.name} ${client.country} ${client.project} ${client.status}`
+          .toLowerCase()
+          .includes(query)
+      )
+      .map((client) => ({
+        type: "Client",
+        title: client.name,
+        subtitle: `${client.country} • ${client.project}`,
+        icon: User,
+      }))
+
+    return [...projectResults, ...clientResults].slice(0, 5)
+  }, [searchQuery])
 
   function toggleTheme() {
     setTheme(theme === "dark" ? "light" : "dark")
@@ -86,9 +123,65 @@ export default function Topbar({
 
           <input
             type="text"
-            placeholder="Search..."
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search projects or clients..."
             className={`w-full border rounded-xl pl-11 pr-4 py-3 outline-none text-sm transition ${inputClass}`}
           />
+
+          {searchQuery && (
+            <div
+              className={`absolute left-0 right-0 top-14 rounded-2xl border shadow-2xl z-[120] overflow-hidden ${dropdownClass}`}
+            >
+              <div className="p-4 border-b border-inherit">
+                <p className="font-semibold">
+                  Search results
+                </p>
+
+                <p className={`text-sm mt-1 ${mutedText}`}>
+                  Results for “{searchQuery}”
+                </p>
+              </div>
+
+              {searchResults.length > 0 ? (
+                <div>
+                  {searchResults.map((result) => {
+                    const Icon = result.icon
+
+                    return (
+                      <button
+                        key={`${result.type}-${result.title}`}
+                        onClick={() => setSearchQuery("")}
+                        className={`w-full p-4 border-b last:border-b-0 text-left transition ${dropdownItemClass}`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                            <Icon size={18} />
+                          </div>
+
+                          <div>
+                            <p className="text-sm font-medium">
+                              {result.title}
+                            </p>
+
+                            <p className={`text-sm mt-1 ${mutedText}`}>
+                              {result.type} • {result.subtitle}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
+              ) : (
+                <div className="p-6 text-center">
+                  <p className={`text-sm ${mutedText}`}>
+                    No results found
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -130,7 +223,7 @@ export default function Topbar({
                 {notifications.map((notification) => (
                   <div
                     key={notification.title}
-                    className={`p-4 border-b last:border-b-0 transition ${notificationItemClass}`}
+                    className={`p-4 border-b last:border-b-0 transition ${dropdownItemClass}`}
                   >
                     <div className="flex items-start gap-3">
                       <div className="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />

@@ -36,7 +36,8 @@ export default function ProjectsSection({ isDark }) {
   return (
     <>
       <section
-        className={`rounded-2xl border p-6 transition-colors duration-300 ${sectionClass}`}
+        id="projects-section"
+        className={`rounded-2xl border p-6 transition-colors duration-300 scroll-mt-24 ${sectionClass}`}
       >
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -49,7 +50,14 @@ export default function ProjectsSection({ isDark }) {
             </p>
           </div>
 
-          <button className="text-sm text-blue-500 hover:text-blue-400">
+          <button
+            onClick={() =>
+              document
+                .getElementById("projects-section")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+            className="text-sm text-blue-500 hover:text-blue-400"
+          >
             View all
           </button>
         </div>
@@ -144,18 +152,12 @@ export default function ProjectsSection({ isDark }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>
-                  Client
-                </p>
-                <p className="font-semibold">
-                  {selectedProject.client}
-                </p>
+                <p className={`text-xs mb-1 ${mutedText}`}>Client</p>
+                <p className="font-semibold">{selectedProject.client}</p>
               </div>
 
               <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>
-                  Status
-                </p>
+                <p className={`text-xs mb-1 ${mutedText}`}>Status</p>
                 <span
                   className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusStyle(
                     selectedProject.status
@@ -166,28 +168,18 @@ export default function ProjectsSection({ isDark }) {
               </div>
 
               <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>
-                  Deadline
-                </p>
-                <p className="font-semibold">
-                  {selectedProject.deadline}
-                </p>
+                <p className={`text-xs mb-1 ${mutedText}`}>Deadline</p>
+                <p className="font-semibold">{selectedProject.deadline}</p>
               </div>
 
               <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-                <p className={`text-xs mb-1 ${mutedText}`}>
-                  Budget
-                </p>
-                <p className="font-semibold">
-                  {selectedProject.price}
-                </p>
+                <p className={`text-xs mb-1 ${mutedText}`}>Budget</p>
+                <p className="font-semibold">{selectedProject.price}</p>
               </div>
             </div>
 
             <div className={`rounded-xl border p-4 ${modalSoftClass}`}>
-              <p className={`text-xs mb-2 ${mutedText}`}>
-                Notes
-              </p>
+              <p className={`text-xs mb-2 ${mutedText}`}>Notes</p>
 
               <p className={`text-sm leading-6 ${mutedText}`}>
                 This project includes responsive frontend implementation,

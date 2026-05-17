@@ -60,7 +60,8 @@ export default function TasksSection({ isDark }) {
 
   return (
     <section
-      className={`rounded-2xl border p-6 transition-colors duration-300 ${sectionClass}`}
+      id="tasks-section"
+      className={`rounded-2xl border p-6 transition-colors duration-300 scroll-mt-24 ${sectionClass}`}
     >
       <div className="flex items-start justify-between mb-6">
         <div>
