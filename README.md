@@ -1,16 +1,74 @@
-# React + Vite
+# FreelancePro Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern freelancer dashboard built with React and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+FreelancePro is a responsive SaaS-style dashboard designed for freelancers to manage projects, clients, tasks, and earnings.
 
-## React Compiler
+The project focuses on clean UI, responsive layouts, reusable React components, dark/light theme support, and interactive dashboard elements.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Responsive dashboard layout
+- Dark / light theme
+- Interactive sidebar navigation
+- Search functionality
+- Notifications dropdown
+- Earnings chart with Recharts
+- Projects section with detailed modals
+- Clients section with detailed modals
+- Task management system
+- LocalStorage persistence
+- Mobile-friendly modals
+- Smooth UI interactions
+
+---
+
+## Tech Stack
+
+- React
+- Vite
+- Tailwind CSS
+- Recharts
+- Lucide React
+
+---
+
+## Screenshots
+
+### Dark Theme
+
+![Dark Dashboard](./screenshots/dark-dashboard.png)
+
+### Light Theme
+
+![Light Dashboard](./screenshots/light-dashboard.png)
+
+### Mobile Version
+
+![Mobile Dashboard](./screenshots/mobile-dashboard.png)
+
+---
+
+## Installation
+
+```bash
+npm install
+npm run dev
+Project Goals
+
+This project was created to practice:
+
+Modern React development
+Component architecture
+Responsive dashboard UI
+State management
+Interactive frontend behavior
+Real-world SaaS interface design
+Author
+
+Bohdan Bedrynets
+Frontend Developer

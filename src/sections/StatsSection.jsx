@@ -1,4 +1,10 @@
-import { DollarSign, FolderKanban, CheckCircle, Star } from "lucide-react"
+import {
+  DollarSign,
+  FolderKanban,
+  CheckCircle,
+  Star,
+} from "lucide-react"
+
 import StatCard from "../components/StatCard"
 
 const stats = [
@@ -28,9 +34,12 @@ const stats = [
   },
 ]
 
-export default function StatsSection() {
+export default function StatsSection({ isDark }) {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <section
+      id="dashboard-section"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 scroll-mt-24"
+    >
       {stats.map((stat) => (
         <StatCard
           key={stat.title}
@@ -38,6 +47,7 @@ export default function StatsSection() {
           value={stat.value}
           change={stat.change}
           icon={stat.icon}
+          isDark={isDark}
         />
       ))}
     </section>

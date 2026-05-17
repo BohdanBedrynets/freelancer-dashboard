@@ -13,3 +13,42 @@
     @apply bg-white border-slate-200;
   }
 }
+
+@layer components {
+  .app-bg {
+    @apply bg-[#0f172a] text-white;
+  }
+
+    .app-bg-light {
+    background: #f1f5f9;
+    color: #0f172a;
+    }
+    .sidebar-light {
+     background: #ffffff;
+     border-right: 1px solid #e2e8f0;
+    }
+
+  .surface {
+    @apply bg-slate-900 border border-slate-800;
+  }
+
+  .surface-light {
+    @apply bg-white border border-slate-200;
+  }
+
+  .surface-soft {
+    @apply bg-slate-950/50 border border-slate-800;
+  }
+
+  .surface-soft-light {
+    @apply bg-slate-50 border border-slate-200;
+  }
+
+  .text-muted {
+    @apply text-slate-400;
+  }
+
+  .text-muted-light {
+    @apply text-slate-500;
+  }
+}
