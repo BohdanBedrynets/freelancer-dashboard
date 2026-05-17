@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 import {
   Briefcase,
   ClipboardList,
@@ -12,27 +10,27 @@ const navItems = [
   {
     icon: LayoutDashboard,
     label: "Dashboard",
-    sectionId: "dashboard-section",
+    id: "dashboard-section",
   },
   {
     icon: FolderKanban,
     label: "Projects",
-    sectionId: "projects-section",
+    id: "projects-section",
   },
   {
     icon: Users,
     label: "Clients",
-    sectionId: "clients-section",
+    id: "clients-section",
   },
   {
     icon: Briefcase,
     label: "Earnings",
-    sectionId: "earnings-section",
+    id: "earnings-section",
   },
   {
     icon: ClipboardList,
     label: "Tasks",
-    sectionId: "tasks-section",
+    id: "tasks-section",
   },
 ]
 
@@ -40,18 +38,24 @@ export default function Sidebar({
   isSidebarOpen,
   setIsSidebarOpen,
   isDark,
+  activeSection,
+  setActiveSection,
 }) {
-  const [activeSection, setActiveSection] = useState("Dashboard")
+  function handleScroll(id) {
+    const element = document.getElementById(id)
 
-  function scrollToSection(sectionId, label) {
-    setActiveSection(label)
+    if (!element) return
 
-    document
-      .getElementById(sectionId)
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    })
+
+    setActiveSection(id)
+
+    setTimeout(() => {
+      setActiveSection("")
+    }, 1200)
 
     setIsSidebarOpen(false)
   }
@@ -71,7 +75,11 @@ export default function Sidebar({
           h-screen w-72
           border-r
           transition-transform duration-300
-          ${isDark ? "bg-slate-950 border-slate-800" : "bg-white border-slate-200"}
+          ${
+            isDark
+              ? "bg-slate-950 border-slate-800"
+              : "bg-white border-slate-200"
+          }
           ${
             isSidebarOpen
               ? "translate-x-0"
@@ -81,18 +89,28 @@ export default function Sidebar({
       >
         <div
           className={`p-6 border-b ${
-            isDark ? "border-slate-800" : "border-slate-200"
+            isDark
+              ? "border-slate-800"
+              : "border-slate-200"
           }`}
         >
           <h1
             className={`text-3xl font-bold ${
-              isDark ? "text-white" : "text-slate-950"
+              isDark
+                ? "text-white"
+                : "text-slate-950"
             }`}
           >
             FreelancePro
           </h1>
 
-          <p className={`mt-2 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
+          <p
+            className={`mt-2 ${
+              isDark
+                ? "text-slate-400"
+                : "text-slate-500"
+            }`}
+          >
             Freelancer Dashboard
           </p>
         </div>
@@ -100,12 +118,14 @@ export default function Sidebar({
         <nav className="p-4 space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon
-            const isActive = activeSection === item.label
+
+            const isActive =
+              activeSection === item.id
 
             return (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.sectionId, item.label)}
+                onClick={() => handleScroll(item.id)}
                 className={`
                   w-full flex items-center gap-3 px-4 py-3 rounded-xl transition cursor-pointer
                   ${
@@ -118,7 +138,6 @@ export default function Sidebar({
                 `}
               >
                 <Icon size={20} />
-
                 <span>{item.label}</span>
               </button>
             )
@@ -135,13 +154,21 @@ export default function Sidebar({
             }
           `}
         >
-          <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}>
+          <p
+            className={`text-sm ${
+              isDark
+                ? "text-slate-400"
+                : "text-slate-500"
+            }`}
+          >
             Monthly earnings
           </p>
 
           <h2
             className={`text-5xl font-bold mt-3 ${
-              isDark ? "text-white" : "text-slate-950"
+              isDark
+                ? "text-white"
+                : "text-slate-950"
             }`}
           >
             $4,250

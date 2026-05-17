@@ -176,7 +176,7 @@ export default function ProjectsSection({ isDark }) {
             </div>
 
             <div className="grid grid-cols-1 gap-3 mb-4">
-              <div className={`rounded-xl border p-3 ${modalSoftClass}`}>
+              <div className={`rounded-xl border p-3 overflow-hidden ${modalSoftClass}`}>
                 <p className={`text-xs mb-1 ${mutedText}`}>
                   Client
                 </p>
@@ -226,7 +226,7 @@ export default function ProjectsSection({ isDark }) {
                 Notes
               </p>
 
-              <p className={`text-sm leading-6 ${mutedText}`}>
+              <p className={`text-sm leading-6 break-words ${mutedText}`}>
                 This project includes responsive frontend implementation,
                 client communication and delivery tracking.
               </p>

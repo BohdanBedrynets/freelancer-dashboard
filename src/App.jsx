@@ -11,6 +11,7 @@ import ClientsSection from "./sections/ClientsSection"
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
 
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "dark"
@@ -32,11 +33,13 @@ export default function App() {
         isDark ? "app-bg" : "app-bg-light"
       }`}
     >
-      <Sidebar
-        isSidebarOpen={isSidebarOpen}
-        setIsSidebarOpen={setIsSidebarOpen}
-        isDark={isDark}
-      />
+    <Sidebar
+      isSidebarOpen={isSidebarOpen}
+      setIsSidebarOpen={setIsSidebarOpen}
+      isDark={isDark}
+      activeSection={activeSection}
+      setActiveSection={setActiveSection}
+    />
 
       <div className="flex-1 flex flex-col">
         <Topbar
